@@ -449,6 +449,12 @@ static ncclResult_t addCBDCollToPlan(
   int rnChannel = 0;
 
   NCCLCHECKGOTO(computeCollChunkInfo(collInfo, collInfo->aggnBytes, collInfo->nChannels), ret, fail);
+  std::cout << "collInfo->nBytes:" << collInfo->nBytes << std::endl;
+  std::cout << "collInfo->chunkCount:" << collInfo->chunkCount << std::endl;
+  std::cout << "collInfo->chunkSize:" << collInfo->chunkSize << std::endl;
+  std::cout << "collInfo->chunkSteps:" << collInfo->chunkSteps << std::endl;
+  std::cout << "collInfo->sliceSteps:" << collInfo->sliceSteps << std::endl;
+  std::cout << "collInfo->stepSize:" << collInfo->stepSize << std::endl;
   NCCLCHECKGOTO(computeCollAlignCount(collInfo, &alignCount), ret, fail);
   NCCLCHECKGOTO(initCollWorkElem(collInfo, &workElem), ret, fail);
   for (int c = 0; c < usableChannels; c++) {
@@ -813,9 +819,6 @@ static ncclResult_t scheduleCollTasksToPlan(
 
       std::cout << "collInfo->coll:" << collInfo->coll << std::endl;
       std::cout << "collInfo->opName:" << collInfo->opName << std::endl;
-      std::cout << "collInfo->nBytes:" << collInfo->nBytes << std::endl;
-      std::cout << "collInfo->chunkCount:" << collInfo->chunkCount << std::endl;
-      std::cout << "collInfo->chunkSize:" << collInfo->chunkSize << std::endl;
       std::cout << "collInfo->algorithm:" << collInfo->algorithm << std::endl;
       std::cout << "collInfo->nThreads:" << collInfo->nThreads << std::endl;
       std::cout << "collInfo->nChannels:" << collInfo->nChannels << std::endl;
