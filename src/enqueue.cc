@@ -15,6 +15,7 @@
 #include <cassert>
 #include <cstring> // std::memcpy
 #include <cinttypes> // PRIx64
+#include <iostream>
 
 NCCL_PARAM(L1SharedMemoryCarveout, "L1_SHARED_MEMORY_CARVEOUT", 0);
 
@@ -809,6 +810,17 @@ static ncclResult_t scheduleCollTasksToPlan(
       } else {
         usableChannels = std::max(usableChannels, comm->collChannels);
       }
+
+      std::cout << "collInfo->coll:" << collInfo->coll << std::endl;
+      std::cout << "collInfo->opName:" << collInfo->opName << std::endl;
+      std::cout << "collInfo->nBytes:" << collInfo->nBytes << std::endl;
+      std::cout << "collInfo->chunkCount:" << collInfo->chunkCount << std::endl;
+      std::cout << "collInfo->chunkSize:" << collInfo->chunkSize << std::endl;
+      std::cout << "collInfo->algorithm:" << collInfo->algorithm << std::endl;
+      std::cout << "collInfo->nThreads:" << collInfo->nThreads << std::endl;
+      std::cout << "collInfo->nChannels:" << collInfo->nChannels << std::endl;
+      std::cout << "collInfo->protocol:" << collInfo->protocol << std::endl;
+      std::cout << "collInfo->userTuned:" << collInfo->userTuned << std::endl;
 
       if (collInfo->algorithm == NCCL_ALGO_COLLNET_DIRECT || collInfo->algorithm == NCCL_ALGO_COLLNET_CHAIN || (collInfo->algorithm == NCCL_ALGO_NVLS && comm->nNodes > 1)) {
         // substract collective which needs to be executed separately
