@@ -455,6 +455,8 @@ static ncclResult_t addCBDCollToPlan(
   std::cout << "collInfo->chunkSteps:" << collInfo->chunkSteps << std::endl;
   std::cout << "collInfo->sliceSteps:" << collInfo->sliceSteps << std::endl;
   std::cout << "collInfo->stepSize:" << collInfo->stepSize << std::endl;
+  std::cout << "collInfo->regBufType:" << regBufType << std::endl;
+  std::cout << "usableChannels:" << usableChannels << std::endl;
   NCCLCHECKGOTO(computeCollAlignCount(collInfo, &alignCount), ret, fail);
   NCCLCHECKGOTO(initCollWorkElem(collInfo, &workElem), ret, fail);
   for (int c = 0; c < usableChannels; c++) {
